@@ -1,37 +1,17 @@
-## Welcome to GitHub Pages
+## Welcome to my Blog.
 
-You can use the [editor on GitHub](https://github.com/Kryptunes/front-end/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+``` I am the Founder of Kryptunes. I am a Tech-Entreprenuer and Investor from Canada. Recently, I found my love for Project Management.I wanted to share my Thoughts on this usbject. You are welcome to read and explore with me ```
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Here are some Topics. I want to cover in future.
 
-### Markdown
+### The Complete Guide to Project Management
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Introduction: Project Management Basics
 
-```markdown
-Syntax highlighted code block
+### The Importance of Getting Your Projects Off on the Right Foot
 
-# Header 1
-## Header 2
-### Header 3
+### How to Streamline Your Project Management Processes with Agile Methodologies
 
-- Bulleted
-- List
+### Tips for Working with Clients and Managing Client Expectations on Projects
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Kryptunes/front-end/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### What Is The Role Of A PMO?

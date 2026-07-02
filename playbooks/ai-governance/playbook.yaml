@@ -1,0 +1,30 @@
+# Sync metadata — consumed by kryptunes-playbook-sync.py
+slug: ai-governance
+title: "Enterprise AI Governance — The Pilot-to-Production Gap"
+strapi_slug: enterprise-ai-governance-pilot-production-gap
+page_group: thoughts          # → kryptunes.com/insights
+visibility: public
+post_template: personal-thoughts
+featured: true
+published: 2026-07-02
+author: Khalid Hossain
+
+obsidian:
+  hub: "20-29 KrypTunes/22 Platform/Enterprise AI Playbooks"
+  note: "20-29 KrypTunes/22 Platform/Enterprise AI Playbooks/AI Governance - Pilot to Production Gap"
+
+github:
+  path: playbooks/ai-governance
+  slides_png: Slides/01.png
+  slides_html: Slides/deck.html
+
+tags:
+  - EnterpriseAI
+  - AIGovernance
+  - ProgramManagement
+
+sources:
+  - name: "CIO / McKinsey 2026"
+    note: "88% of enterprise AI pilots never reach production"
+  - name: "Grant Thornton 2026 AI Impact Survey"
+    note: "7% pilot orgs confident on governance audit vs 74% fully integrated"

@@ -4,9 +4,10 @@
 
 Slides and notes for LinkedIn — agentic AI, project management, and tech leadership.
 
-→ [kryptunes.com](https://kryptunes.com) · info@kryptunes.com
+→ [kryptunes.com](https://kryptunes.com) 
+→ https://www.linkedin.com/in/consultkhalid/
 
----
+---__
 
 ## Posts
 

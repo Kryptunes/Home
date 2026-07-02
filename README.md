@@ -13,7 +13,7 @@ Slides and notes for LinkedIn — agentic AI, project management, and tech leade
 
 | Date | Topic | Folder |
 |------|-------|--------|
-| _add as you publish_ | | |
+| 2026-07-02 | AI pilots vs production — governance gap | `posts/2026-07-ai-governance-gap/` |
 
 ---
 

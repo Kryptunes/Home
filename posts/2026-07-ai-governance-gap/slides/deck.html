@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>AI Pilots vs Production — Khalid Hossain</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0d1117;
+    --surface:  #161b22;
+    --border:   #ffffff;
+    --green:    #3fb950;
+    --amber:    #d29922;
+    --red:      #f85149;
+    --muted:    #8b949e;
+    --text:     #e6edf3;
+    --mono:     'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  html, body {
+    width: 1200px;
+    height: 627px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.55;
+    overflow: hidden;
+  }
+
+  .deck {
+    width: 1200px;
+    height: 627px;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 28px 18px;
+    gap: 14px;
+  }
+
+  /* ── top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 10px;
+  }
+  .dots span {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+  .dot-r { background: #f85149; }
+  .dot-y { background: #d29922; }
+  .dot-g { background: #3fb950; }
+  .prompt { color: var(--green); font-weight: 600; font-size: 12px; }
+  .cmd    { color: var(--text);  font-size: 12px; }
+  .cursor { display: inline-block; width: 8px; height: 14px; background: var(--green); vertical-align: middle; animation: blink 1s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* ── heading ── */
+  .heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .heading span { color: var(--amber); }
+
+  /* ── three columns ── */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr 20px 1fr;
+    gap: 0;
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 18px;
+    padding-top: 20px;
+  }
+
+  .box {
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+  .box.green { border-color: var(--green); }
+  .box.amber { border-color: var(--amber); }
+  .box.red   { border-color: var(--red);   }
+
+  .box-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: var(--bg);
+  }
+  .green .box-label { color: var(--green); }
+  .amber .box-label { color: var(--amber); }
+  .red   .box-label { color: var(--red);   }
+
+  .box-body {
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .box-body .ok  { color: var(--green); }
+  .box-body .no  { color: var(--red);   }
+  .box-body .q   { color: var(--amber); }
+
+  .stat-block {
+    margin-top: auto;
+    border-top: 1px solid #30363d;
+    padding-top: 8px;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .stat-num.green { color: var(--green); }
+  .stat-num.amber { color: var(--amber); }
+  .stat-num.red   { color: var(--red);   }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-top: 2px;
+  }
+  .stat-source {
+    font-size: 11px;
+    color: #444d56;
+    margin-top: 3px;
+  }
+
+  /* ── bottom bar ── */
+  .bottom {
+    border-top: 1px solid #30363d;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .takeaway {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 820px;
+    line-height: 1.5;
+  }
+  .takeaway strong { color: var(--text); }
+  .byline {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .byline strong {
+    color: #ffffff;
+    font-size: 15px;
+    display: block;
+    margin-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- top bar -->
+  <div class="topbar">
+    <div class="dots">
+      <span class="dot-r"></span>
+      <span class="dot-y"></span>
+      <span class="dot-g"></span>
+    </div>
+    <span class="prompt">khalid@kryptunes:~$</span>
+    <span class="cmd">./delivery-map --ai-lifecycle --flag governance-gap --ref GT2026,Deloitte2026</span>
+    <span class="cursor"></span>
+  </div>
+
+  <!-- heading -->
+  <div class="heading">
+    AI pilots do not fail the same way <span>AI production</span> does.
+  </div>
+
+  <!-- three columns -->
+  <div class="cols">
+
+    <!-- PILOT -->
+    <div class="box green">
+      <span class="box-label">[ PILOT ]</span>
+      <div class="box-body">
+        <span class="ok">✓</span> Scope is limited<br>
+        <span class="ok">✓</span> Users are supportive<br>
+        <span class="ok">✓</span> Unusual outputs manually reviewed<br>
+        <span class="ok">✓</span> Team can explain edge cases<br>
+        <br>
+        <span style="color:var(--muted)">Primary question:</span><br>
+        <span class="q">"Is the model accurate enough?"</span>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num amber">88%</div>
+        <div class="stat-label">of enterprise AI pilots<br>never reach production</div>
+        <div class="stat-source">— CIO / McKinsey, 2026</div>
+      </div>
+    </div>
+
+    <div class="arrow">──▶</div>
+
+    <!-- GAP -->
+    <div class="box amber">
+      <span class="box-label">[ GOVERNANCE GAP ]</span>
+      <div class="box-body">
+        <span class="no">✗</span> Who reviews the result?<br>
+        <span class="no">✗</span> Who can pause the process?<br>
+        <span class="no">✗</span> Who coordinates the fix?<br>
+        <span class="no">✗</span> Who communicates impact<br>
+        &nbsp;&nbsp;&nbsp;to the business?<br>
+        <br>
+        <span style="color:var(--muted)">Root cause:</span><br>
+        <span class="no">Ownership undefined before go-live</span>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num red">7%</div>
+        <div class="stat-label">of orgs still in pilot are confident<br>they could pass an AI governance<br>audit in 90 days</div>
+        <div class="stat-source">— Grant Thornton 2026 AI Impact Survey</div>
+      </div>
+    </div>
+
+    <div class="arrow">──▶</div>
+
+    <!-- PRODUCTION -->
+    <div class="box red">
+      <span class="box-label">[ PRODUCTION ]</span>
+      <div class="box-body">
+        <span class="no">✗</span> Real users, real consequences<br>
+        <span class="no">✗</span> No manual review buffer<br>
+        <span class="no">✗</span> Errors have business impact<br>
+        <span class="no">✗</span> AI solution ready —<br>
+        &nbsp;&nbsp;&nbsp;support model is not<br>
+        <br>
+        <span style="color:var(--muted)">New question:</span><br>
+        <span class="q">"Who owns the impact?"</span>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num green">74%</div>
+        <div class="stat-label">of fully integrated AI orgs<br>are confident on governance audit<br><em>vs 7% still piloting</em></div>
+        <div class="stat-source">— Grant Thornton 2026 AI Impact Survey</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- bottom bar -->
+  <div class="bottom">
+    <div class="takeaway">
+      <span style="color:var(--green)">▶</span>&nbsp;
+      <strong>Before scaling AI:</strong> define the human review, escalation, and support process
+      for when it does <em>not</em> behave as expected in real production.
+    </div>
+    <div class="byline">
+      <strong>Khalid Hossain</strong>
+      AI Researcher &amp; Program Manager · CGI Inc · Canada<br>
+      #EnterpriseAI #AIGovernance #ProgramManagement
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

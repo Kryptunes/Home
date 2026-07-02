@@ -1,6 +1,6 @@
 # Khalid · Kryptunes
 
-**TPM @ CGI** · **AI researcher** · **PM** · **Founder @ Kryptunes**
+**Technical Program Manager and Product Owner @ CGI** · **AI researcher** · **PM** · **Founder @ Kryptunes**
 
 Slides and notes for LinkedIn — agentic AI, project management, and tech leadership.
 

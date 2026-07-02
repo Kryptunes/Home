@@ -3,24 +3,24 @@
 ## Flow
 
 ```text
-playbooks/<slug>/          GitHub (source of truth)
-        │
-        ├─► Obsidian vault   20-29 KrypTunes/22 Platform/Enterprise AI Playbooks/
-        │
-        └─► Strapi CMS       page_group: thoughts → kryptunes.com/insights/<slug>
+playbooks/<slug>/
+  article.md       → GitHub only (implementation framework)
+  strapi-post.md   → Strapi only (insights / traffic → kryptunes.com/insights)
+  playbook.yaml    → metadata for both (separate titles)
+
+Obsidian mirrors article.md (GitHub framework), not Strapi post.
 ```
 
-## Command
+## Commands (keep targets separate)
 
 ```bash
-# From kxbrain host:
-~/kxbrain/scripts/kryptunes-playbook-sync.py --playbook ai-governance
+# GitHub: edit + git push (manual — source of truth for frameworks)
 
-# Dry run (preview only):
-~/kxbrain/scripts/kryptunes-playbook-sync.py --playbook ai-governance --dry-run
-
-# Obsidian only (no Strapi token needed):
+# Obsidian only (from article.md):
 ~/kxbrain/scripts/kryptunes-playbook-sync.py --playbook ai-governance --obsidian-only
+
+# Strapi / insights only (from strapi-post.md):
+~/kxbrain/scripts/kryptunes-playbook-sync.py --playbook ai-governance --strapi-only
 ```
 
 ## Prerequisites

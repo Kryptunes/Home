@@ -1,7 +1,9 @@
 # Sync metadata — consumed by kryptunes-playbook-sync.py
 slug: ai-governance
 title: "Enterprise AI Governance — The Pilot-to-Production Gap"
+strapi_title: "AI Pilots Don't Fail Like Production — The Governance Gap"
 strapi_slug: enterprise-ai-governance-pilot-production-gap
+strapi_excerpt: "88% of AI pilots never reach production. The failure mode changes at go-live — and most teams never define who owns the impact."
 page_group: thoughts          # → kryptunes.com/insights
 visibility: public
 post_template: personal-thoughts
